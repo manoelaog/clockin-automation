@@ -7,7 +7,7 @@ export default defineConfig({
   env: {
     email: 'manoela.gonzaga@totvs.com.br',
     emailFake: 'login.teste@totvs.com.br',
-    password: '@19July#Totvs',
+    password: 'password',
   },
   e2e: {
     baseUrl: 'https://totvsclockin.carol.ai/totvsrm/apps/dev/totvsrmbocdsdm/0.0.1/index.html',
