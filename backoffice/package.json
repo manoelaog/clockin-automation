@@ -1,0 +1,42 @@
+{
+  "name": "cypress-backoffice",
+  "version": "1.0.0",
+  "description": "Clock-in Backoffice test automation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "prettier --write .",
+    "lint:build": "prettier --check ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^16.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "@types/node": "^18.16.0",
+    "cypress": "^12.10.0",
+    "esbuild": "^0.17.18",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "cypress-cucumber-preprocessor": {
+    "filterSpecs": true,
+    "omitFiltered": true,
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "./cypress/support/step-definitions/steps/**.ts",
+    "json": {
+      "enabled": true,
+      "formatter": "./cypress/report/utils/cucumber-json-formatter",
+      "output": "./cypress/report/json/cucumber-report.json"
+    },
+    "html": {
+      "enabled": true,
+      "output": "./cypress/report/html/cucumber-report.html"
+    },
+    "messages": {
+      "enabled": true,
+      "output": "./cypress/report/json/cucumber-messages.ndjson"
+    }
+  }
+}
