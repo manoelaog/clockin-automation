@@ -25,5 +25,10 @@ jobs:
       - name: Install
         run: npm install
 
+      - name: Remove old report
+        run: rm -f ./cypress/report/html/** ./cypress/report/json/**
+
       - name: Test
-        run: npm run cy:run
+        uses: cypress-io/github-action@v4
+        with:
+         command: npx cypress run
