@@ -6,30 +6,33 @@ Funcionalidade: Login no Backoffice
     Contexto: 
         Dado que eu acesso o backoffice
 
-    Cenario: Verifica login invalido
+    Cenario: CT001 - Verifica login inválido
         Quando digito um email invalido
-        Então devo visualizar mensagem de login incorreto 
+        Então a mensagem de erro "Incorrect login was used." é exibida
         
-    Cenario: Verifica senha invalido
+    Cenario: CT002 - Verifica senha inválida
         Quando digito uma senha invalida
-        Então devo visualizar mensagem de senha incorreta
+        Então a mensagem de erro "Incorrect password was used" é exibida
 
-    Cenario: Verifica ambiente invalido
+    Cenario: CT003 - Verifica ambiente inválido
         Quando digito um ambiente incorreto
-        Então devo visualizar mensagem de ambiente nao encontrado 
+        Então a mensagem de erro "Tenant not found" é exibida
 
-    Cenario: Verifica organizacão invalida
+    Cenario: CT004 - Verifica organizacão invalida
         Quando digito uma organizacao invalida
-        Então devo visualizar mensagem de organizacao invalida
+        Então a mensagem de erro "Invalid organization, please try again." é exibida
 
-    Cenario: Verifica esqueci minha senha com email aleatório
-        Quando clico em esqueci minha senha e digito email aleatorio
-        Então devo visualizar mensagem de email incorreta, tente novamente
+    Cenario: CT005 - Verifica esqueci minha senha com email aleatório
+        Quando clico em esqueci minha senha 
+        E digito email aleatorio
+        Então a mensagem de erro "Invalid email account, please try again." é exibida
 
-    Cenario: Verifica esqueci minha senha com email invalido
-        Quando clico em esqueci minha senha e digito email invalido
-        Então devo visualizar mensagem de email invalido
+    Cenario: CT006 - Verifica esqueci minha senha com email inválido
+        Quando clico em esqueci minha senha 
+        E digito email invalido
+        Então a mensagem de erro "Invalid Email" é exibida
 
-    Cenario: Verifica esqueci minha senha com email valido
-        Quando clico em esqueci minha senha e digito email valido
-        Então devo visualizar mensagem de instrucoes no email
+    Cenario: CT007 - Verifica esqueci minha senha com email válido
+        Quando clico em esqueci minha senha 
+        E digito email valido
+        Então devo visualizar mensagem "An email with instructions to reset your password has been sent to"

@@ -5,9 +5,9 @@ Funcionalidade: Validar a aba empresas
 
     Contexto:
         Dado que eu estou logado no backoffice
-        E acesso a area de empresas
+        E acesso o menu de "Empresas"
 
-    Cenario: Cadastrar nova empresa no Backoffice
+    Cenario: CT001 - Cadastrar nova empresa no Backoffice
         Quando cadastro nova empresa com todos os campos preenchidos corretamente
         E pesquiso a empresa cadastrada
         Então devo visualizar a empresa cadastrada na lista de empresas

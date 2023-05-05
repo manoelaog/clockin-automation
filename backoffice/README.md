@@ -6,7 +6,7 @@
 - [Estruturação das pastas](#folders)
 - [Criando um teste](#test-development)
   - [Feature](#feature)
-  - [Spec](#spec)
+  - [Step](#step)
   - [Page object](#page-object)
 - [Execução](#test-execution)
 - [Links Úteis](#utilities)
@@ -32,7 +32,7 @@
 
 ---
 
-Os testes estão separados por menu, assim, para cada menu do Backoffice que automatizarmos, teremos pelo menos 3 arquivos: _feature, spec e page-object_. 
+Os testes estão separados por menu, assim, para cada menu do Backoffice que automatizarmos, teremos pelo menos 3 arquivos: _feature, step e page-object_. 
 
 Estes arquivos estão organizados da seguinte forma:
 
@@ -84,9 +84,9 @@ Cenário: CT005 - A página é redirecionada para a Gestão de Times ao clicar e
 ```
 
 
-<a id="spec"></a>
+<a id="step"></a>
 
-### **Spec**
+### **Step**
 
 Neste arquivo serão implementados os testes utilizando as funções _Given, When, Then_, correspondendo aos passos descritos no arquivo de feature, sendo que (geralmente):
 
@@ -220,6 +220,8 @@ Then('a página Localizações é exibida', function (pageName: string) {
 Os testes end-to-end são executados a partir de dois comandos: 
 - `npx cypress open` : O cypress é aberto, e você pode escolher o browser que será executado e a feature durante a navegação. É ótimo para quando está desenvolvendo os testes pois possui a função `watch files`, ele reexecuta os testes conforme o código é alterado.
 - `npx cypress run` : É executado em modo headless, ou seja, a execução será feita em memória e o browser não será aberto. É uma ótima opção para validações de teste sistêmicos e execuções em esteira.
+
+-É possível também executar apenas um arquivo de feature, ou apenas um teste. Para isso basta incluir uma tag acima da funcionalidade/cenário e utilizá-la junto ao parâmetro, no momento da execução: `npx cypress run --env tags="@empresas" `
 
 
 ---

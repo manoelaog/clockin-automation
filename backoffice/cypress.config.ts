@@ -7,7 +7,7 @@ export default defineConfig({
   env: {
     email: 'manoela.gonzaga@totvs.com.br',
     emailFake: 'login.teste@totvs.com.br',
-    password: 'password',
+    password: '@19July#Totvs',
   },
   e2e: {
     baseUrl: 'https://totvsclockin.carol.ai/totvsrm/apps/dev/totvsrmbocdsdm/0.0.1/index.html',
@@ -18,6 +18,8 @@ export default defineConfig({
     defaultCommandTimeout: 90000,
     screenshotOnRunFailure: true,
     experimentalInteractiveRunEvents: true,
+    viewportWidth: 1366,
+    viewportHeight: 768,
     async setupNodeEvents(
       on: Cypress.PluginEvents,
       config: Cypress.PluginConfigOptions,

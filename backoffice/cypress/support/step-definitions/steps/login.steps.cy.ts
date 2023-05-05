@@ -1,67 +1,48 @@
-import { Login } from '../page-objects/login-pagina.po';
-import { When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { Then, When } from '@badeball/cypress-cucumber-preprocessor';
+import { Login } from '../page-objects/login-page.po';
 
 const login = new Login();
 
 When('digito um email invalido', function () {
-  login.escreverLoginESenha(Cypress.env('emailFake'), Cypress.env('password'));
-  login.cliqueNoLogin();
+  login.doLogin(Cypress.env('emailFake'), Cypress.env('password'));
+  login.clickOnLoginButton();
 });
 
 When('digito uma senha invalida', function () {
-  login.escreverLoginESenha(Cypress.env('email'), '123456789');
-  login.cliqueNoLogin();
+  login.doLogin(Cypress.env('email'), '123456789');
+  login.clickOnLoginButton();
 });
 
 When('digito um ambiente incorreto', function () {
-  login.escreverAmbiente('clockinBeta');
+  login.setTenant('clockinBeta');
 });
 
 When('digito uma organizacao invalida', function () {
-  login.escreverOrganizacao('clockinBeta');
+  login.setOrganization('clockinBeta');
 });
 
-When('clico em esqueci minha senha e digito email aleatorio', function () {
-  login.cliqueEsqeciSenha();
-  login.escreverEmailEsqueciSenha(Cypress.env('emailFake'));
-  login.cliqueNoLogin();
+When('clico em esqueci minha senha', function () {
+  login.clickOnForgotPassword();
 });
 
-When('clico em esqueci minha senha e digito email invalido', function () {
-  login.cliqueEsqeciSenha();
-  login.escreverEmailEsqueciSenha('clockin');
+When('digito email aleatorio', function () {
+  login.setEmail(Cypress.env('emailFake'));
+  login.clickOnLoginButton();
 });
 
-When('clico em esqueci minha senha e digito email valido', function () {
-  login.cliqueEsqeciSenha();
-  login.escreverEmailEsqueciSenha(Cypress.env('email'));
-  login.cliqueNoLogin();
+When('digito email invalido', function () {
+  login.setEmail('clockin');
 });
 
-Then('devo visualizar mensagem de login incorreto', function () {
-  login.mensagemLoginIncorreto();
+When('digito email valido', function () {
+  login.setEmail(Cypress.env('email'));
+  login.clickOnLoginButton();
 });
 
-Then('devo visualizar mensagem de senha incorreta', function () {
-  login.mensagemSenhaIncorreta();
+Then('devo visualizar mensagem {string}', function (text: string) {
+  login.instructionsMessageIsDisplayed(text);
 });
 
-Then('devo visualizar mensagem de ambiente nao encontrado', function () {
-  login.mensagemAmbienteIncorreto();
-});
-
-Then('devo visualizar mensagem de organizacao invalida', function () {
-  login.mensagemOrganizacaoInvalida();
-});
-
-Then('devo visualizar mensagem de email incorreta, tente novamente', function () {
-  login.mensagemEmailIncorreto();
-});
-
-Then('devo visualizar mensagem de email invalido', function () {
-  login.mensagemEmailInvalido();
-});
-
-Then('devo visualizar mensagem de instrucoes no email', function () {
-  login.mensagemInstrucoesPeloEmail();
+Then('a mensagem de erro {string} é exibida', function (errorMessage: string) {
+  login.errorMessageIsDisplayed(errorMessage);
 });
