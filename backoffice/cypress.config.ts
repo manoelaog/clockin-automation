@@ -11,8 +11,8 @@ export default defineConfig({
   },
   reporter: 'junit',
   reporterOptions: {
-    mochaFile: 'cypress/report/results.xml',
-    toConsole: true,
+    mochaFile: 'cypress/report/xml/results_[hash].xml',
+    attachments: true
   },
   e2e: {
     baseUrl: 'https://totvsclockin.carol.ai/totvsrm/apps/dev/totvsrmbocdsdm/0.0.1/index.html',

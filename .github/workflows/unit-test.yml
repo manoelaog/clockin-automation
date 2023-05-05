@@ -1,0 +1,27 @@
+name: Unity Test Execution
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main, development ]
+
+jobs:
+  Unit-Test-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.x
+          cache: npm
+
+      - name: Install
+        working-directory: ./clocking-backoffice-v2/
+        run: npm ci
+
+      - name: Test
+        working-directory: ./clocking-backoffice-v2/
+        run: npm test
+

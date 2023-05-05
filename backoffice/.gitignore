@@ -2,5 +2,6 @@
 /node_modules
 /cypress/report/json
 /cypress/report/html
+/cypress/report/xml
 /cypress/downloads
 /cypress/screenshots
