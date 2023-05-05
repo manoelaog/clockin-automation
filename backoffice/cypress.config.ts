@@ -9,6 +9,11 @@ export default defineConfig({
     emailFake: 'login.teste@totvs.com.br',
     password: '@19July#Totvs',
   },
+  reporter: 'junit',
+  reporterOptions: {
+    mochaFile: 'cypress/report/results.xml',
+    toConsole: true,
+  },
   e2e: {
     baseUrl: 'https://totvsclockin.carol.ai/totvsrm/apps/dev/totvsrmbocdsdm/0.0.1/index.html',
     specPattern: './cypress/e2e/**.feature',

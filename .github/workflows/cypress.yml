@@ -31,9 +31,8 @@ jobs:
       - name: Test
         run: npm run cy:run
 
-      - name: Artifacts
-        uses: actions/upload-artifact@v3
-        if: failure()
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2.7.0
+        if: always()
         with:
-          name: cypress-screenshots
-          path: /backoffice/cypress/screenshots
+          files: ./backoffice/cypress/report/results.xml
