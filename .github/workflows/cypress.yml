@@ -29,9 +29,11 @@ jobs:
         run: rm -f ./cypress/report/html/** ./cypress/report/json/**
 
       - name: Test
-        uses: cypress-io/github-action@v5.7.1
+        run: npm run cy:run
+
+      - name: Artifacts
+        uses: actions/upload-artifact@v3
+        if: failure()
         with:
-         working-directory: ./backoffice
-         command: npx cypress run
-         headed: true
-         
+          name: cypress-screenshots
+          path: /backoffice/cypress/screenshots
