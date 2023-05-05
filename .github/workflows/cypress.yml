@@ -29,6 +29,9 @@ jobs:
         run: rm -f ./cypress/report/html/** ./cypress/report/json/**
 
       - name: Test
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5.7.1
         with:
+         project: ./backoffice
          command: npx cypress run
+         headed: true
+         
