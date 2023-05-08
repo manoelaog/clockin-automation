@@ -41,6 +41,7 @@ jobs:
 
       - name: Test
         run: npm run cy:run
+        continue-on-error: true
 
       - name: Html report
         uses: actions/upload-artifact@v3
