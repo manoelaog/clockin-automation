@@ -8,12 +8,14 @@ export class Generic {
   }
 
   doLogin(): void {
+    cy.intercept('POST', '**/api/v1/queries/filter**').as('postQuerie');
     cy.get(Selectors.email).type(Cypress.env('email'));
     cy.get(Selectors.password).type(Cypress.env('password'), { log: false });
     cy.get(Selectors.buttonLogin).click();
+    cy.wait('@postQuerie');
   }
 
   clickOnMenu(menuName: string): void {
-    cy.get(Selectors.menuIcon).contains(menuName).click({force: true});
+    cy.get(Selectors.menuIcon).contains(menuName).click({ force: true });
   }
 }

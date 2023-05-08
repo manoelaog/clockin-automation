@@ -1,4 +1,3 @@
-
 export class Login {
   private inputEmail = '#email';
   private inputPassword = '#password';

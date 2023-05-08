@@ -11,7 +11,7 @@ export class Companies {
   timeOut: number = 30000;
 
   loadFixture(): void {
-    cy.fixture('empresas').then(fixture => {
+    cy.fixture('empresas').then((fixture) => {
       this.companyId = fixture.codigo;
       this.companyName = fixture.nome;
       this.cnpj = fixture.cnpj;
@@ -27,18 +27,55 @@ export class Companies {
     cy.get(CompanySelectors.cnpj).type(this.cnpj);
     cy.get(CompanySelectors.ceicno).type(this.ceicno);
     cy.get(CompanySelectors.companyAddress).type(this.companyAddress).wait(500);
-    cy.contains('Brasil').click();
+    cy.contains(Selectors.googleAddress, 'Brasil').click();
     cy.get(Selectors.buttonSave).click();
-    cy.get(Selectors.modalAdd).should('not.exist');
+    cy.contains(Selectors.toaster, 'Registro criado com sucesso').should(
+      'be.visible'
+    );
   }
 
   searchCompany(): void {
+    cy.get(Selectors.simpleFilter).clear();
     cy.get(Selectors.simpleFilter).type(this.companyName);
     cy.get(Selectors.buttonSearch).click();
   }
 
   companyIsDisplayed(): void {
     cy.get(Selectors.overlay).should('not.exist');
-    cy.get(Selectors.tableContainer).contains(Selectors.td, this.companyName).should('be.visible');
+    cy.get(Selectors.tableContainer)
+      .contains(Selectors.td, this.companyName)
+      .should('be.visible');
+  }
+
+  deleteCompany(): void {
+    cy.get(Selectors.overlay).should('not.exist');
+    cy.get(Selectors.tableContainer)
+      .contains(Selectors.tr, this.companyName)
+      .then((row: any) => {
+        const children = row[0].children;
+        cy.get(children[0]).click();
+        cy.intercept(
+          'DELETE',
+          '**api/v1/entities/templates/**/goldenRecords/**'
+        ).as('deleteCompany');
+        cy.get(Selectors.buttonDelete).click();
+        cy.wait('@deleteCompany');
+        cy.contains(Selectors.toaster, 'Registro excluidos com sucesso').should(
+          'be.visible'
+        );
+        this.clearSearch();
+      });
+  }
+
+  clearSearch(): void {
+    cy.get(Selectors.simpleFilter).clear();
+    cy.get(Selectors.buttonSearch).click();
+  }
+
+  companyIsNotDisplayed(): void {
+    cy.get(Selectors.overlay).should('not.exist');
+    cy.get(Selectors.tableContainer)
+      .contains(Selectors.td, 'Nenhum dado encontrado')
+      .should('be.visible');
   }
 }

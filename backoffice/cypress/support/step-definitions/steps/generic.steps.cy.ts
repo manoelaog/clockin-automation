@@ -19,4 +19,3 @@ Given('que eu estou logado no backoffice', () => {
 Given('acesso o menu de {string}', function (menuName: string) {
   generic.clickOnMenu(menuName);
 });
-

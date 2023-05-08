@@ -8,7 +8,7 @@ export class Locations {
   private address_2: string = '';
 
   loadFixture(): void {
-    cy.fixture('localizacoes').then(fixture => {
+    cy.fixture('localizacoes').then((fixture) => {
       this.locationId = fixture.codigo;
       this.description = fixture.descricao;
       this.address_1 = fixture.endereco_1;
@@ -33,17 +33,24 @@ export class Locations {
     cy.get(LocationSelectors.timezone).click();
     cy.contains(LocationSelectors.timeZoneItem, 'America/Sao_Paulo').click();
     cy.get(LocationSelectors.locationAddress).type(this.address_1).wait(500);
-    cy.contains('Brasil').click();
-    cy.get(LocationSelectors.addressRadius).type('500');
+    cy.contains(Selectors.googleAddress, 'Brasil').click();
+    cy.get(LocationSelectors.locationAddress).eq(1).should('be.visible');
+    cy.get(LocationSelectors.addressRadius).first().type('500');
     cy.get(Selectors.buttonSave).click();
-    cy.get(Selectors.modalAdd).should('not.exist');
+    cy.contains(Selectors.toaster, 'Registro criado com sucesso').should(
+      'be.visible'
+    );
   }
 
   changeLocation(): void {
     cy.get(LocationSelectors.locationAddress).clear();
-    cy.get(LocationSelectors.locationAddress).first().type(this.address_2).wait(500);
-    cy.contains('SP').click();
-    cy.get(LocationSelectors.addressRadius).first().type('500');
+    cy.get(LocationSelectors.locationAddress)
+      .first()
+      .type(this.address_2)
+      .wait(500);
+    cy.contains(Selectors.googleAddress, 'SP').click();
+    cy.get(LocationSelectors.addressRadius).clear();
+    cy.get(LocationSelectors.addressRadius).first().type('700');
     cy.get(Selectors.buttonSave).click();
     cy.get(Selectors.modalAdd).should('not.exist');
   }
@@ -55,9 +62,15 @@ export class Locations {
       .then((row: any) => {
         const children = row[0].children;
         cy.get(children[0]).click();
-        cy.intercept('DELETE', '**api/v1/entities/templates/**/goldenRecords/**').as('deleteLocation');
-        cy.get(LocationSelectors.buttonDeleteLocation).contains('Remover').click();
+        cy.intercept(
+          'DELETE',
+          '**api/v1/entities/templates/**/goldenRecords/**'
+        ).as('deleteLocation');
+        cy.get(Selectors.buttonDelete).click();
         cy.wait('@deleteLocation');
+        cy.contains(Selectors.toaster, 'Registro excluidos com sucesso').should(
+          'be.visible'
+        );
         this.clearSearch();
       });
     cy.get(Selectors.overlay).should('not.exist');
@@ -79,7 +92,7 @@ export class Locations {
       .contains(Selectors.td, description)
       .should('be.visible');
   }
-  
+
   locationIsNotDisplayed(): void {
     cy.get(Selectors.overlay).should('not.exist');
     cy.get(Selectors.tableContainer)

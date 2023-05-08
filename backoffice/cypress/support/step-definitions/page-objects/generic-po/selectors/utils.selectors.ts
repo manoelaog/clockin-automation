@@ -16,4 +16,7 @@ export enum Selectors {
   simpleFilter = '.po-page-list-filter-wrapper > .po-field-container-content > .po-input',
   buttonSearch = '.po-field-container-content > .po-field-icon-container-right > .po-icon',
   disclaimerDelete = '.po-disclaimer-remove',
+  googleAddress = '.pac-item',
+  buttonDelete = '.po-page-list-actions .po-button-default',
+  toaster = '.alert',
 }
