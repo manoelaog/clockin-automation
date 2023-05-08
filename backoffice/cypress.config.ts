@@ -22,7 +22,7 @@ export default defineConfig({
     chromeWebSecurity: false,
     video: false,
     pageLoadTimeout: 120000,
-    defaultCommandTimeout: 90000,
+    defaultCommandTimeout: 40000,
     screenshotOnRunFailure: true,
     experimentalInteractiveRunEvents: true,
     viewportWidth: 1366,
@@ -38,6 +38,14 @@ export default defineConfig({
           plugins: [createEsbuildPlugin(config)],
         }),
       );
+
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (browser.family === 'chromium') {
+          launchOptions.args.push('--lang=pt-BR');
+          return launchOptions;
+        }
+      });
+
       return config;
     },
   },
