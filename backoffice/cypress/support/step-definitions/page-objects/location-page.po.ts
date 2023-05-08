@@ -49,7 +49,7 @@ export class Locations {
       .type(this.address_2)
       .wait(500);
     cy.contains(Selectors.googleAddress, 'SP').click();
-    cy.get(LocationSelectors.addressRadius).clear();
+    cy.get(LocationSelectors.addressRadius).first().clear();
     cy.get(LocationSelectors.addressRadius).first().type('700');
     cy.get(Selectors.buttonSave).click();
     cy.get(Selectors.modalAdd).should('not.exist');
