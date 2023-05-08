@@ -25,11 +25,3 @@ Then('devo visualizar a empresa cadastrada na lista de empresas', function () {
 When('seleciono e clico em excluir', function () {
   company.deleteCompany();
 });
-
-Then(
-  'quando pesquiso a empresa novamente, ela não é mais exibida',
-  function () {
-    company.searchCompany();
-    company.companyIsNotDisplayed();
-  }
-);

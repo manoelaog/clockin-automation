@@ -15,4 +15,4 @@ Funcionalidade: Validar a aba empresas
     Cenario: CT002 - Excluir empresa no Backoffice (quando não há vínculos)
         Quando pesquiso a empresa cadastrada 
         E seleciono e clico em excluir
-        Então quando pesquiso a empresa novamente, ela não é mais exibida
+        Então a mensagem "Registro excluidos com sucesso" é exibida

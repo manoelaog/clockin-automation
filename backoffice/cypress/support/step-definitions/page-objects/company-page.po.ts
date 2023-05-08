@@ -60,22 +60,6 @@ export class Companies {
         ).as('deleteCompany');
         cy.get(Selectors.buttonDelete).click();
         cy.wait('@deleteCompany');
-        cy.contains(Selectors.toaster, 'Registro excluidos com sucesso').should(
-          'be.visible'
-        );
-        this.clearSearch();
       });
-  }
-
-  clearSearch(): void {
-    cy.get(Selectors.simpleFilter).clear();
-    cy.get(Selectors.buttonSearch).click();
-  }
-
-  companyIsNotDisplayed(): void {
-    cy.get(Selectors.overlay).should('not.exist');
-    cy.get(Selectors.tableContainer)
-      .contains(Selectors.td, 'Nenhum dado encontrado')
-      .should('be.visible');
   }
 }

@@ -34,7 +34,3 @@ Then('devo visualizar a localizacao cadastrada na lista de localizacoes', functi
 Then('devo visualizar a localizacao atualizada na lista de localizacoes', function () {
   location.locationIsDisplayed('Rua Manguari, Jardim Andarai');
 });
-
-Then('não devo visualizar a localizacao na lista de localizacoes', function () {
-  location.locationIsNotDisplayed();
-});

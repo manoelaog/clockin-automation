@@ -18,4 +18,8 @@ export class Generic {
   clickOnMenu(menuName: string): void {
     cy.get(Selectors.menuIcon).contains(menuName).click({ force: true });
   }
+
+  successMessageIsDisplayed(message: string): void {
+    cy.contains(Selectors.toaster, message).should('be.visible');
+  }
 }

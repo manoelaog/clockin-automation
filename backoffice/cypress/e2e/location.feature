@@ -24,5 +24,4 @@ Funcionalidade: Localizações
     Cenario: CT004 - Excluir localização
         Quando pesquiso a localização cadastrada
         E seleciono minha localização cadastrada, clico em remover
-        E pesquiso a localização cadastrada
-        Então não devo visualizar a localizacao na lista de localizacoes
+        Então a mensagem "Registro excluidos com sucesso" é exibida

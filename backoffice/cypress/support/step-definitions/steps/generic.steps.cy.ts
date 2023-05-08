@@ -1,4 +1,4 @@
-import { Given } from '@badeball/cypress-cucumber-preprocessor';
+import { Given, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { Generic } from '../page-objects/generic-po/generic.po';
 
 const generic = new Generic();
@@ -18,4 +18,8 @@ Given('que eu estou logado no backoffice', () => {
 
 Given('acesso o menu de {string}', function (menuName: string) {
   generic.clickOnMenu(menuName);
+});
+
+Then('a mensagem {string} é exibida', function (message: string) {
+  generic.successMessageIsDisplayed(message);
 });
