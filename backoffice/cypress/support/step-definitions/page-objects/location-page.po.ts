@@ -84,6 +84,7 @@ export class Locations {
   clearSearch(): void {
     cy.get(Selectors.simpleFilter).clear();
     cy.get(Selectors.buttonSearch).click();
+    cy.wait(1000);
   }
 
   locationIsDisplayed(description: string): void {
