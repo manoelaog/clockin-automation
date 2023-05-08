@@ -18,8 +18,10 @@ jobs:
       - name: Set language
         run: |
           sudo locale-gen pt_BR.UTF-8
-          sudo localectl set-locale LANG="pt_BR.UTF-8"
           export LANG="pt_BR.UTF-8"
+          export TZ="America/Sao_Paulo"
+          export LC_ALL="pt_BR.UTF-8"
+          export LANGUAGE="pt_BR.UTF-8"
           sudo update-locale LANG=pt_BR.UTF-8
 
       - name: Setup node
