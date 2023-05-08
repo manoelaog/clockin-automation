@@ -42,13 +42,13 @@ jobs:
       - name: Test
         run: npm run cy:run
 
+      - name: Html report
+        uses: actions/upload-artifact@v3
+        with:
+          path: .backoffice/cypress/report/html/cucumber-report.html
+
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2.7.0
         if: always()
         with:
           files: ./backoffice/cypress/report/xml/results_**.xml
-
-      - name: Html report
-        uses: actions/upload-artifact@v3
-        with:
-          path: .backoffice/cypress/report/html/cucumber-report.html
