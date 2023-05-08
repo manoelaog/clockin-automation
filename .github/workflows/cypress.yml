@@ -46,11 +46,11 @@ jobs:
         run: npm run cy:run
         continue-on-error: true
 
-      - name: Html report
+      - name: Publish html report
         uses: actions/upload-artifact@v3
         if: failed()
         with:
-          name: cucumber-report
+          name: Cypress html report
           path: ./backoffice/cypress/report/html/cucumber-report.html
           retention-days: 2
 
