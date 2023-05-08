@@ -48,7 +48,7 @@ jobs:
 
       - name: Publish html report
         uses: actions/upload-artifact@v3
-        if: failed()
+        if: failure()
         with:
           name: Cypress html report
           path: ./backoffice/cypress/report/html/cucumber-report.html
