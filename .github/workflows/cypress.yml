@@ -45,7 +45,9 @@ jobs:
       - name: Html report
         uses: actions/upload-artifact@v3
         with:
+          name: cucumber-report
           path: .backoffice/cypress/report/html/cucumber-report.html
+          retention-days: 2
 
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2.7.0
