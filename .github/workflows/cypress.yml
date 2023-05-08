@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: cucumber-report
-          path: .backoffice/cypress/report/html/cucumber-report.html
+          path: ./backoffice/cypress/report/html/cucumber-report.html
           retention-days: 2
 
       - name: Publish Test Results
