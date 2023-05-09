@@ -43,7 +43,7 @@ jobs:
         run: rm -f ./cypress/report/html/** ./cypress/report/json/** ./cypress/report/xml/**
 
       - name: Test
-        run: npm run cy:run
+        run: npm run cy:run -- --env password=${{ secrets.CAROLPASSWORD }}
 
       - name: Publish html report
         uses: actions/upload-artifact@v3
