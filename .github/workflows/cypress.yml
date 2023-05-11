@@ -4,8 +4,8 @@ on:
   pull_request:
     branches: [ main, development ]
 
-  schedule:
-  - cron: '0 02 * * 1,4'
+#  schedule:
+#  - cron: '0 02 * * 1,4'
 
 env: 
     LANG: "pt_BR.UTF-8"
